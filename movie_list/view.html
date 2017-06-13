@@ -1,0 +1,51 @@
+<div class="main-content">
+	<h1 class="page-header">{{title}}</h1>
+	<!--当message有值时会显示出来-->
+	<h2 ng-if='message'>{{message}}</h2>
+	<ul class="list-group">
+		<li class="list-group-item" ng-repeat="item in subjects">
+			<a href="#/detail/{{item.id}}">
+				<span class="badge">{{item.rating.average}}</span>
+				<div class="media">
+					<div class="media-left">
+						<img height='128px' class="media-object" ng-src="{{item.images.small}}" alt="{{item.title}}">
+					</div>
+					<div class="media-body">
+						<h2	 class="media-heading">{{item.title}}</h2>
+						<p>
+							导演:
+							<span ng-repeat="d in item.directors">
+							{{d.name + ($last? '': '、')}}
+						</span>
+						</p>
+						<p>
+							演员:
+							<span ng-repeat="c in item.casts">
+							{{c.name + ($last? '': '、')}}
+						</span>
+						</p>
+						<!--数组转化为字符串-->
+						<p>类型:{{item.genres.join("、")}}</p>
+					</div>
+				</div>
+			</a>
+		</li>
+	</ul>
+</div>
+
+<div ng-show="!loading">
+	<p>总共：{{totalCount}}条记录，第{{currentPage}}/{{totalPages}}页</p>
+	<nav>
+		<ul class="pager">
+			<li ng-class="{disabled : currentPage <= 1}"><a ng-click="go(currentPage - 1)">« 上一页</a></li>
+			<li ng-class="{disabled : currentPage >= totalPages}"><a ng-click="go(currentPage + 1)">下一页 »</a></li>
+		</ul>
+	</nav>
+</div>
+
+<div class="spinner" ng-if="loading">
+	<div class="dot1"></div>
+	<div class="dot2"></div>
+</div>
+
+

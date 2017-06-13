@@ -1,0 +1,21 @@
+<div class="jumbotron">
+	<h1>{{movie.title}}</h1>
+	<img ng-src="{{movie.images.large}}" alt="{{movie.title}}">
+	<div class="cast-list">
+		<h2>主演:</h2>
+		<ul>
+			<li ng-repeat="cast in movie.casts">
+				<img src="{{cast.avatars.medium}}" alt="{{cast.name}}">
+				<p>{{cast.name}}</p>
+			</li>
+		</ul>
+	</div>
+	<p class="summary">{{movie.summary}}</p>
+</div>
+
+<div class="spinner" ng-if="loading">
+	<div class="dot1"></div>
+	<div class="dot2"></div>
+</div>
+
+
